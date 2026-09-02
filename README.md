@@ -1,6 +1,10 @@
 # My Coding Journey — VLD
 
-A privacy-conscious, static portfolio for documenting a year of independent coding study. The site is built with plain HTML, CSS, and JavaScript and is ready for GitHub Pages.
+A privacy-conscious, static portfolio for documenting a year of independent coding study. It is built with plain HTML, CSS, and JavaScript and published with GitHub Pages.
+
+Live site: https://abiel-tsai.github.io/vld-coding-journey/
+
+The design includes light and dark themes, responsive navigation, self-hosted fonts, a weekly reflection template, and accessible keyboard focus states.
 
 ## Before publishing
 
