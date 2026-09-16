@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta name="theme-color" content="#f5f2e9"><title>Write a reflection | My Coding Journey</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css"><script src="assets/site.js" defer></script><script src="assets/editor.js" defer></script></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="index.html"><span class="brand-mark">{ VLD }</span> My Coding Journey</a><a class="text-link" href="reflections.html">Back to journal</a><button class="theme-toggle" type="button" aria-label="Switch between light and dark themes">Theme: <span>auto</span></button></div></header>
+<main id="main" class="page-main editor-main">
+  <header class="page-heading"><p class="eyebrow">Your writing desk</p><h1>A moment to reflect.</h1><p>Start with what happened. A useful reflection can be a few honest sentences.</p></header>
+  <div class="editor-layout"><aside class="editor-note"><h2>From draft to journal</h2><p>Your draft saves in this browser. When it’s ready, copy it and continue to GitHub.</p><p>Sign in as <strong>Abiel-Tsai</strong>, paste into the empty file editor, then choose <strong>Commit changes</strong> and commit directly to <strong>main</strong>.</p><p>Your entry will appear in the public journal after GitHub finishes publishing, usually within a few minutes. GitHub checks your permission to change the repository.</p><p>Keep personal or private information out of published entries.</p></aside>
+  <form id="reflection-form">
+    <div class="editor-row"><label>Entry title<input name="title" required maxlength="120" placeholder="What clicked today?" autocomplete="off"></label><label>Date<input name="date" type="date" required></label></div>
+    <label>What I worked on<textarea name="work" required maxlength="5000" rows="5" placeholder="Name the lesson, concept, or part of your project."></textarea></label>
+    <label>What was difficult<textarea name="challenge" required maxlength="5000" rows="4" placeholder="Describe where you got stuck."></textarea></label>
+    <label>How I responded<textarea name="response" required maxlength="5000" rows="4" placeholder="What did you try? What happened?"></textarea></label>
+    <label>Next step<textarea name="next" required maxlength="5000" rows="3" placeholder="One thing to try next session."></textarea></label>
+    <label>Self-direction check<textarea name="check" required maxlength="5000" rows="3" placeholder="How did you manage your time, focus, or help from others?"></textarea></label>
+    <p id="draft-status" class="draft-status" role="status">Drafts are saved only on this device.</p>
+    <div class="editor-actions"><button class="button primary" type="submit">Prepare to publish ↗</button><button class="button secondary" id="download-draft" type="button">Download backup</button><button class="text-button" id="clear-draft" type="button">Clear draft</button></div>
+  </form></div>
+  <section id="publish-panel" class="publish-panel" hidden aria-labelledby="publish-heading"><h2 id="publish-heading">Ready for GitHub</h2><p id="copy-status" role="status"></p><p>Paste the copied text into GitHub’s empty file editor. Keep the filename as shown, then commit to main. Nothing is published until you confirm on GitHub.</p><label>Entry file contents<textarea id="publish-content" readonly rows="8" spellcheck="false"></textarea></label><a id="github-publish" class="button primary" target="_blank" rel="noopener noreferrer">Continue to GitHub ↗</a><p class="muted">Your draft stays here after publishing. Clear it when you’re ready to start a new entry.</p></section>
+  <noscript><p>The writing form needs JavaScript. You can also add an entry directly in the <a href="https://github.com/Abiel-Tsai/vld-coding-journey">GitHub repository</a>.</p></noscript>
+</main><footer><p>Virtual Learning &amp; Development, 2026–27</p><a href="reflections.html">Read the journal</a></footer>
+</body></html>
