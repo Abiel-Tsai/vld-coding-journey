@@ -10,7 +10,7 @@ The design includes light and dark themes, responsive navigation, self-hosted fo
 
 1. Open `write.html` on the live site, or select **Write a reflection** in the journal.
 2. Fill in the fields. Use **Absent / missed session** for an absence note; the challenge, response, and self-check fields become optional. Record the missed session's date and an honest next step.
-3. Optionally attach up to three PNG, JPG, or WebP images (12 MB input limit each), with descriptions and captions. Add sources or acknowledge help when applicable. Images are resized to at most 2000 pixels on the long side and compressed to about 220 KB or less each. Check the previews for readable code and text.
+3. Optionally attach up to three PNG, JPG, or WebP images (12 MB input limit each), with one short caption per image. The caption also supplies its accessibility description. Add sources or acknowledge help when applicable. Images are resized to at most 2000 pixels on the long side and compressed to about 220 KB or less each. Check the previews for readable code and text.
 4. Select **Prepare to publish**, then **Download entry file**. The JSON file contains both text and images. **Download backup** can also save an unfinished draft.
 5. Select **Open GitHub upload**, sign in as **Abiel-Tsai**, and upload the downloaded JSON file into `_data/reflections`. Keep its filename unchanged. Commit directly to `main`.
 6. Wait for GitHub Pages to rebuild, then check the journal. Images also appear on the Evidence page with links to their reflections.

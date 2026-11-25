@@ -31,7 +31,7 @@
     for (const field of ['challenge','response','check']) form.elements[field].required = !absent;
     document.querySelector('#absence-help').hidden = !absent;
   }
-  function entry() { return {...Object.fromEntries(fields.map(field => [field,form.elements[field].value.trim()])),images}; }
+  function entry() { return {...Object.fromEntries(fields.map(field => [field,form.elements[field].value.trim()])),images:images.map(image=>({...image,alt:image.caption.trim()}))}; }
   const filename = () => `${form.elements.date.value || today}-${id}.json`;
   function invalidate() { panel.hidden = true; prepared = null; }
   function save() {
@@ -44,15 +44,14 @@
     images.forEach((image,index) => {
       const card = document.createElement('fieldset'); card.className = 'image-editor';
       const legend = document.createElement('legend'); legend.textContent = `Image ${index+1}`; card.append(legend);
-      const preview = document.createElement('img'); preview.src = image.data; preview.alt = image.alt || `Preview of attachment ${index+1}`; card.append(preview);
+      const preview = document.createElement('img'); preview.src = image.data; preview.alt = image.caption || image.alt || `Preview of attachment ${index+1}`; card.append(preview);
       for (const [field,labelText,placeholder,limit] of [
-        ['alt','Image description (required)','Describe what is visible for someone who cannot see it.',300],
-        ['caption','What this shows (required)','Explain what this screenshot proves about your learning.',1000],
+        ['caption','Caption (required)','For example: My solution passed all test cases.',1000],
         ['source','Source / acknowledgement (optional)','Problem URL, source, or help used, if applicable.',500]
       ]) {
         const label = document.createElement('label'); label.textContent = labelText;
         const input = document.createElement('input'); input.type='text'; input.maxLength=limit; input.required=field!=='source'; input.value=image[field]; input.placeholder=placeholder;
-        input.addEventListener('input',()=>{image[field]=input.value;if(field==='alt')preview.alt=input.value;});
+        input.addEventListener('input',()=>{image[field]=input.value;if(field==='caption')preview.alt=input.value;});
         label.append(input); card.append(label);
       }
       const remove = document.createElement('button'); remove.type='button'; remove.className='text-button'; remove.textContent=`Remove image ${index+1}`;
@@ -91,7 +90,7 @@
     try {
       const additions=[];for(const file of files)additions.push(await compress(file));
       images.push(...additions);renderImages();save();
-      imageStatus.textContent='Images attached to your draft. Add descriptions and captions, and check that the previews are readable.';
+      imageStatus.textContent='Images attached. Add one short caption per image and check that the previews are readable.';
     }catch(error){imageStatus.textContent=error.message;}
     finally{processing=false;imageInput.disabled=false;imageInput.value='';buttons.forEach(button=>button.disabled=false);}
   });
@@ -99,7 +98,7 @@
   form.addEventListener('submit',event=>{
     event.preventDefault();if(processing||!form.reportValidity())return;
     const required=form.elements.session.value==='absent'?['title','date','work','next']:['title','date','work','challenge','response','next','check'];
-    if(required.some(field=>!entry()[field])||images.some(image=>!image.alt.trim()||!image.caption.trim())){status.textContent='Please complete the required fields and image descriptions/captions. Spaces alone do not count.';return;}
+    if(required.some(field=>!entry()[field])||images.some(image=>!image.caption.trim())){status.textContent='Please complete the required fields and add a short caption for each image. Spaces alone do not count.';return;}
     prepared={content:JSON.stringify(entry(),null,2)+'\n',name:filename()};
     document.querySelector('#entry-filename').textContent=prepared.name;
     document.querySelector('#entry-summary').textContent=`${entry().title} · ${entry().date} · ${images.length} image${images.length===1?'':'s'}`;
