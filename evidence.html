@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Projects and evidence from my coding studies."><meta name="theme-color" content="#111214"><title>Evidence | My Coding Journey</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css"><script src="assets/site.js" defer></script></head>
@@ -5,7 +7,19 @@
 <header class="site-header"><div class="header-inner"><a class="brand" href="index.html"><span class="brand-mark" translate="no">{ VLD }</span> My Coding Journey</a><button class="theme-toggle" type="button" aria-label="Switch between light and dark themes">Theme: <span>auto</span></button><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button><nav id="site-nav" class="site-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="course-log.html">Course log</a><a href="reflections.html">Reflections</a><a href="learner-bio.html">Learner bio</a><a class="active" aria-current="page" href="evidence.html">Evidence</a></nav></div></header>
 <main id="main" class="page-main">
   <header class="page-heading"><h1>Evidence of learning</h1><p>This page collects the code, screenshots, and reflections behind each project.</p></header>
+  <section class="section" aria-labelledby="session-evidence"><h2 id="session-evidence">Evidence by session</h2>
+    {% assign reflections = site.data.reflections | sort %}
+    {% assign evidence_count = 0 %}
+    {% for item in reflections reversed %}
+      {% assign entry = item[1] %}
+      {% if entry.images.size > 0 %}
+        {% assign evidence_count = evidence_count | plus: 1 %}
+        <article class="session-evidence"><header><time datetime="{{ entry.date | escape }}">{{ entry.date | date: "%B %-d, %Y" }}</time><h3>{{ entry.title | escape }}</h3><a class="text-link" href="reflections.html#entry-{{ item[0] | escape }}">Read this reflection</a></header><div class="reflection-gallery">{% include reflection-images.html entry=entry %}</div></article>
+      {% endif %}
+    {% endfor %}
+    {% if evidence_count == 0 %}<p>No session images have been published yet. <a class="text-link" href="write.html">Attach evidence to a reflection</a> to add screenshots, notes, or output here.</p>{% endif %}
+  </section>
   <section class="section" aria-labelledby="first-project"><h2 id="first-project">First project</h2><article class="project-feature"><div class="project-media"><img src="assets/images/site-home.webp" width="1280" height="800" loading="lazy" alt="The homepage of this coding portfolio displayed in dark mode"></div><div class="project-copy"><span class="meta-label">In progress</span><h3>This VLD website</h3><p>I am using HTML, CSS, Git, and GitHub Pages to build and maintain the site that documents my learning.</p><p>The first version taught me how page structure, shared styling, navigation, and responsive layouts fit together.</p><ul class="tag-list" aria-label="Technologies used"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub</li></ul></div></article></section>
   <section class="section" aria-labelledby="next-work"><h2 id="next-work">What comes next</h2><div class="next-project"><span class="meta-label">Coding practice</span><p>I will add work from ZeroJudge and AtCoder here, including a link to the problem, my solution, and notes on what was difficult and how long it took.</p></div></section>
   <section class="section" aria-labelledby="evidence-heading"><h2 id="evidence-heading">What counts as evidence</h2><ul class="evidence-list"><li><h3>The artifact</h3><p>Add a safe screenshot, certificate, code sample, or live demonstration.</p></li><li><h3>What it proves</h3><p>Name the concept or skill the work demonstrates and point to a specific part.</p></li><li><h3>The next revision</h3><p>Record one difficulty, how I handled it, and what I would change next time.</p></li></ul></section>
-</main><footer><p>Virtual Learning &amp; Development, 2026-27</p><p>Last updated September 2026</p></footer></body></html>
+</main><footer><p>Virtual Learning &amp; Development, 2026-27</p><p>Last updated November 2026</p></footer></body></html>

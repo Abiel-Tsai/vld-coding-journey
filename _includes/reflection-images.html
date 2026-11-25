@@ -1,0 +1,10 @@
+{% for photo in include.entry.images %}
+  {% assign prefix = photo.data | slice: 0, 23 %}
+  {% assign png_prefix = photo.data | slice: 0, 22 %}
+  {% if prefix == 'data:image/webp;base64,' or prefix == 'data:image/jpeg;base64,' or png_prefix == 'data:image/png;base64,' %}
+  <figure class="reflection-image">
+    <img src="{{ photo.data | escape }}" alt="{{ photo.alt | escape }}" loading="lazy" decoding="async">
+    <figcaption><p>{{ photo.caption | escape }}</p>{% if photo.source != empty and photo.source %}<p class="image-source">Source / acknowledgement: {{ photo.source | escape }}</p>{% endif %}</figcaption>
+  </figure>
+  {% endif %}
+{% endfor %}

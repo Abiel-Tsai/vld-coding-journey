@@ -12,8 +12,19 @@
     {% assign reflections = site.data.reflections | sort %}
     {% for item in reflections reversed %}
     {% assign entry = item[1] %}
-    <article class="journal-entry"><header><div><p class="week">Learning notes</p><h3 class="entry-title">{{ entry.title | escape }}</h3></div><time datetime="{{ entry.date | escape }}">{{ entry.date | date: "%B %-d, %Y" }}</time></header><div class="reflection-grid"><div><h4>What I worked on</h4><p>{{ entry.work | escape }}</p></div><div><h4>What was difficult</h4><p>{{ entry.challenge | escape }}</p></div><div><h4>How I responded</h4><p>{{ entry.response | escape }}</p></div><div><h4>Next step</h4><p>{{ entry.next | escape }}</p></div></div><p class="self-check"><strong>Self-direction check:</strong> {{ entry.check | escape }}</p></article>
+    <article class="journal-entry" id="entry-{{ item[0] | escape }}">
+      <header><div><p class="week">{% if entry.session == 'absent' %}Absent / missed session{% else %}Learning notes{% endif %}</p><h3 class="entry-title">{{ entry.title | escape }}</h3></div><time datetime="{{ entry.date | escape }}">{{ entry.date | date: "%B %-d, %Y" }}</time></header>
+      <div class="reflection-grid">
+        <div><h4>{% if entry.session == 'absent' %}Session note{% else %}What I worked on{% endif %}</h4><p>{{ entry.work | escape }}</p></div>
+        {% if entry.progress != empty and entry.progress %}<div><h4>Progress since last session</h4><p>{{ entry.progress | escape }}</p></div>{% endif %}
+        {% if entry.challenge != empty and entry.challenge %}<div><h4>What was difficult</h4><p>{{ entry.challenge | escape }}</p></div>{% endif %}
+        {% if entry.response != empty and entry.response %}<div><h4>How I responded</h4><p>{{ entry.response | escape }}</p></div>{% endif %}
+        <div><h4>Next step</h4><p>{{ entry.next | escape }}</p></div>
+      </div>
+      {% if entry.check != empty and entry.check %}<p class="self-check"><strong>Self-direction check:</strong> {{ entry.check | escape }}</p>{% endif %}
+      {% if entry.images.size > 0 %}<div class="reflection-gallery" aria-label="Evidence for this entry">{% include reflection-images.html entry=entry %}</div>{% endif %}
+    </article>
     {% endfor %}
     <details class="template-entry"><summary>Open the weekly reflection template</summary><div class="template-content"><div class="reflection-grid"><div><h3>What I worked on</h3><p>What did you try, learn, make, or complete? Include specific concepts.</p></div><div><h3>What was difficult</h3><p>Where did you slow down, get confused, or encounter an error?</p></div><div><h3>How I responded</h3><p>What strategies did you try? What worked, and what did not?</p></div><div><h3>Next step</h3><p>What is the first concrete action you will take next session?</p></div></div><p class="self-check"><strong>Self-direction check:</strong> Assess your focus honestly and compare it with your ManageBac score.</p></div></details>
   </div></section>
-</main><footer><p>Virtual Learning &amp; Development, 2026-27</p><p>Last updated September 2026</p></footer></body></html>
+</main><footer><p>Virtual Learning &amp; Development, 2026-27</p><p>Last updated November 2026</p></footer></body></html>
